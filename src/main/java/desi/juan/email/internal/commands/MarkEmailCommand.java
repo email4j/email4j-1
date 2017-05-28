@@ -33,6 +33,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.UIDFolder;
 
+import com.google.common.collect.Maps;
 import desi.juan.email.api.EmailFlags;
 import desi.juan.email.api.EmailFlags.EmailFlag;
 import desi.juan.email.internal.exception.RetrieveEmailException;
@@ -46,7 +47,7 @@ public final class MarkEmailCommand {
   private static final Map<EmailFlag, Flag> flagMap;
 
   static {
-    flagMap = new HashMap<>();
+    flagMap = Maps.newHashMap();
     flagMap.put(EmailFlag.SEEN, Flag.SEEN);
     flagMap.put(EmailFlag.ANSWERED, Flag.ANSWERED);
     flagMap.put(EmailFlag.RECENT, Flag.RECENT);

@@ -36,7 +36,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import javax.mail.Header;
 import javax.mail.Message;
@@ -44,8 +43,11 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import desi.juan.email.api.EmailAttachment;
 import desi.juan.email.internal.exception.EmailException;
+import desi.juan.email.jdk18.StringJoiner;
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -55,7 +57,7 @@ class EmailContentProcessor {
 
   private static final String ERROR_PROCESSING_MESSAGE = "Error while processing message content.";
 
-  private final List<EmailAttachment> attachmentParts = new LinkedList<>();
+  private final List<EmailAttachment> attachmentParts = Lists.newLinkedList();
   private final StringJoiner body = new StringJoiner("\n");
 
   /**
@@ -105,7 +107,9 @@ class EmailContentProcessor {
       for (int i = 0; i < mp.getCount(); i++) {
         processPart(mp.getBodyPart(i));
       }
-    } catch (MessagingException | IOException e) {
+    } catch (MessagingException e) {
+      throw new EmailException(ERROR_PROCESSING_MESSAGE, e);
+    } catch (IOException e) {
       throw new EmailException(ERROR_PROCESSING_MESSAGE, e);
     }
   }
@@ -124,7 +128,7 @@ class EmailContentProcessor {
       }
 
       if (isAttachment(part)) {
-        Map<String, String> headers = new HashMap<>();
+        Map<String, String> headers = Maps.newHashMap();
         final Enumeration allHeaders = part.getAllHeaders();
         while (allHeaders.hasMoreElements()) {
           Header h = (Header) allHeaders.nextElement();
@@ -143,7 +147,9 @@ class EmailContentProcessor {
           body.add(inline);
         }
       }
-    } catch (MessagingException | IOException e) {
+    } catch (MessagingException e) {
+      throw new EmailException(ERROR_PROCESSING_MESSAGE, e);
+    } catch (IOException e) {
       throw new EmailException(ERROR_PROCESSING_MESSAGE, e);
     }
   }

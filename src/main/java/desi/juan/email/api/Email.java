@@ -23,11 +23,14 @@
  */
 package desi.juan.email.api;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
+import org.joda.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+//import java.util.Optional;
 
+import com.google.common.base.Optional;
 /**
  * Generic contract for email messages implementations.
  */

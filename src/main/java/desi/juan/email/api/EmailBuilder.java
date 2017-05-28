@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import desi.juan.email.internal.DefaultEmailBody;
 import desi.juan.email.internal.OutgoingEmail;
 
@@ -40,13 +42,13 @@ import desi.juan.email.internal.OutgoingEmail;
 public final class EmailBuilder {
 
   private String subject = "[No Subject]";
-  private List<String> from = new ArrayList<>();
-  private List<String> to = new ArrayList<>();
-  private List<String> bcc = new ArrayList<>();
-  private List<String> cc = new ArrayList<>();
-  private Map<String, String> headers = new HashMap<>();
-  private List<String> replyTo = new ArrayList<>();
-  private List<EmailAttachment> attachments = new ArrayList<>();
+  private List<String> from = Lists.newArrayList();
+  private List<String> to = Lists.newArrayList();
+  private List<String> bcc = Lists.newArrayList();
+  private List<String> cc = Lists.newArrayList();
+  private Map<String, String> headers = Maps.newHashMap();
+  private List<String> replyTo = Lists.newArrayList();
+  private List<EmailAttachment> attachments = Lists.newArrayList();
   private EmailBody body;
 
   /**

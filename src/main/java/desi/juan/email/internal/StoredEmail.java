@@ -23,37 +23,29 @@
  */
 package desi.juan.email.internal;
 
-import static desi.juan.email.api.EmailConstants.TEXT;
-import static java.util.Arrays.stream;
-import static java.util.Collections.emptyList;
-import static java.util.stream.Collectors.toList;
-import static javax.mail.Message.RecipientType.BCC;
-import static javax.mail.Message.RecipientType.CC;
-import static javax.mail.Message.RecipientType.TO;
-
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import javax.mail.Address;
-import javax.mail.Flags;
-import javax.mail.Flags.Flag;
-import javax.mail.Folder;
-import javax.mail.Header;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import desi.juan.email.api.Email;
 import desi.juan.email.api.EmailAttachment;
 import desi.juan.email.api.EmailBody;
 import desi.juan.email.api.EmailFlags;
 import desi.juan.email.internal.exception.RetrieveEmailException;
+import org.joda.time.LocalDateTime;
+
+import javax.mail.*;
+import javax.mail.Flags.Flag;
+import java.util.*;
+
+import static desi.juan.email.api.EmailConstants.TEXT;
+import static java.util.Collections.emptyList;
+import static javax.mail.Message.RecipientType.*;
+
+//import static java.util.stream.Collectors.toList;
+//import java.time.LocalDateTime;
+//import java.time.ZoneId;
+//import java.util.Optional;
 
 /**
  * Contains all the metadata of an email, it carries information such as the subject of the email, the id in the mailbox and the
@@ -265,7 +257,7 @@ public class StoredEmail implements Email {
    */
   @Override
   public Map<String, String> getHeaders() {
-    return headers != null ? ImmutableMap.copyOf(headers) : ImmutableMap.of();
+    return headers != null ? ImmutableMap.<String, String>copyOf(headers) : ImmutableMap.<String, String>of();
   }
 
   /**
@@ -296,10 +288,21 @@ public class StoredEmail implements Email {
    * Parses an array of {@link Address}es to a {@link List}.
    */
   private List<String> parseAddressArray(Address[] toAddresses) {
-    if (toAddresses != null) {
-      return stream(toAddresses).map(Object::toString).collect(toList());
-    }
-    return emptyList();
+      if (toAddresses != null) {
+//      return stream(toAddresses).map(Object::toString).collect(toList());
+
+          HashSet<String> set = Sets.newHashSet();
+          for (Address toAddress : toAddresses) {
+              set.add(toAddress.toString());
+          }
+
+          List<String> list = Lists.newArrayList();
+          list.addAll(set);
+
+          return list;
+
+      }
+      return emptyList();
   }
 
   /**
@@ -332,6 +335,7 @@ public class StoredEmail implements Email {
     if (date == null) {
       return null;
     }
-    return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+//    return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+    return  LocalDateTime.fromDateFields(date);
   }
 }

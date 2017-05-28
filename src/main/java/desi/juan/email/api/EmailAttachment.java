@@ -23,8 +23,9 @@
  */
 package desi.juan.email.api;
 
-import static java.util.Collections.emptyMap;
+//import static java.util.Collections.emptyMap;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -52,7 +53,7 @@ public final class EmailAttachment {
   private final Map<String, String> headers;
 
   public EmailAttachment(String id, Object content, String contentType) {
-    this(id, content, contentType, emptyMap());
+    this(id, content, contentType, Collections.<String, String>emptyMap());
   }
 
   public EmailAttachment(String id, Object content, String contentType, Map<String, String> headers) {

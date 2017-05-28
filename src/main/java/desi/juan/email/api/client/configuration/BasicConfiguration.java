@@ -26,8 +26,8 @@ package desi.juan.email.api.client.configuration;
 import static java.util.Collections.emptyMap;
 
 import java.util.Map;
-import java.util.Optional;
-
+//import java.util.Optional;
+import com.google.common.base.Optional;
 import desi.juan.email.api.security.TlsConfiguration;
 
 /**
@@ -40,7 +40,8 @@ public class BasicConfiguration implements ClientConfiguration {
 
   @Override
   public Optional<TlsConfiguration> getTlsConfig() {
-    return Optional.empty();
+//    return Optional.empty();
+    return Optional.absent();
   }
 
   @Override

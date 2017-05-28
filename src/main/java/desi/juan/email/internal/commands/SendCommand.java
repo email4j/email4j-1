@@ -32,6 +32,7 @@ import static javax.mail.Message.RecipientType.TO;
 import static javax.mail.Part.ATTACHMENT;
 import static javax.mail.Part.INLINE;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.google.common.collect.Lists;
 import desi.juan.email.api.Email;
 import desi.juan.email.api.EmailAttachment;
 import desi.juan.email.api.EmailBody;
@@ -123,7 +125,16 @@ public final class SendCommand {
    * Converts a {@link List} of {@link String}s representing email addresses into an {@link Address} array.
    */
   private Address[] toAddresses(List<String> addresses) {
-    return addresses.stream().map(this::toAddress).toArray(Address[]::new);
+//    return addresses.stream().map(this::toAddress).toArray(Address[]::new);
+
+    Address[] addressesArray = new Address[addresses.size()];
+
+    for (int i = 0; i < addresses.size(); i++) {
+      Address address = toAddress(addresses.get(i));
+      addressesArray[i] = address;
+    }
+
+    return addressesArray;
   }
 
   /**

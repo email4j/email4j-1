@@ -24,21 +24,21 @@
 package desi.juan.email.internal;
 
 import static com.google.common.collect.ImmutableList.copyOf;
-import static java.time.LocalDateTime.now;
 
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
+//import java.util.Optional;
 import javax.mail.Folder;
 
 import desi.juan.email.api.Email;
 import desi.juan.email.api.EmailAttachment;
 import desi.juan.email.api.EmailBody;
 import desi.juan.email.api.EmailFlags;
+import org.joda.time.LocalDateTime;
 
 /**
  * Contains all the metadata of an email, it carries information such as the subject of the email, the id in the mailbox and the
@@ -113,7 +113,7 @@ public class OutgoingEmail implements Email {
                        List<EmailAttachment> attachments,
                        Map<String, String> headers) {
     this.subject = subject;
-    this.sentDate = now();
+    this.sentDate = LocalDateTime.now();
     this.toAddresses = copyOf(toAddresses);
     this.ccAddresses = copyOf(ccAddresses);
     this.bccAddresses = copyOf(bccAddresses);
@@ -198,7 +198,7 @@ public class OutgoingEmail implements Email {
    */
   @Override
   public Map<String, String> getHeaders() {
-    return headers != null ? ImmutableMap.copyOf(headers) : ImmutableMap.of();
+    return headers != null ? ImmutableMap.<String, String> copyOf(headers) : ImmutableMap.<String, String> of();
   }
 
   /**

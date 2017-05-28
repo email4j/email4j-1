@@ -28,6 +28,7 @@ import static desi.juan.email.api.client.configuration.ClientConfiguration.DEFAU
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import desi.juan.email.api.security.TlsConfiguration;
 
 /**
@@ -39,7 +40,7 @@ public class ClientConfigurationBuilder {
   private long connectionTimeout = DEFAULT_TIMEOUT;
   private long writeTimeout = DEFAULT_TIMEOUT;
   private long readTimeout = DEFAULT_TIMEOUT;
-  private Map<String, String> properties = new LinkedHashMap<>();
+  private Map<String, String> properties = Maps.newLinkedHashMap();
 
   private ClientConfigurationBuilder() {
   }

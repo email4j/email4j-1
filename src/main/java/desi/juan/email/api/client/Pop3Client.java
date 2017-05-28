@@ -65,7 +65,11 @@ public class Pop3Client extends AbstractMailboxManagerClient {
     List<Email> emails = retriever.retrieve(f, true);
     if (deleteAfterRetrieve) {
       //TODO: check input streams after the emails has been deleted
-      emails.forEach(e -> deleter.deleteByNumber(f, e.getNumber()));
+//      emails.forEach(e -> deleter.deleteByNumber(f, e.getNumber()));
+      for (Email e : emails) {
+        deleter.deleteByNumber(f, e.getNumber());
+      }
+
     }
     return emails;
   }

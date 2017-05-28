@@ -24,8 +24,8 @@
 package desi.juan.email.api.client.configuration;
 
 import java.util.Map;
-import java.util.Optional;
-
+//import java.util.Optional;
+import com.google.common.base.Optional;
 import desi.juan.email.api.security.TlsConfiguration;
 
 /**
