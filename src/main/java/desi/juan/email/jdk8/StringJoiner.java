@@ -22,7 +22,7 @@
  *
  *
  */
-package desi.juan.email.jdk18;
+package desi.juan.email.jdk8;
 
 /**
  * {@code StringJoiner} is used to construct a sequence of characters separated

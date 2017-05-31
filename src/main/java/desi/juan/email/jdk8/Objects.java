@@ -2,7 +2,7 @@
  * 58.com Inc.
  * Copyright (c) 2005-2017 All Rights Reserved.
  */
-package desi.juan.email.jdk18;
+package desi.juan.email.jdk8;
 
 /**
  * @author yangxiang01

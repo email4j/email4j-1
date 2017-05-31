@@ -32,8 +32,6 @@ import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +45,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import desi.juan.email.api.EmailAttachment;
 import desi.juan.email.internal.exception.EmailException;
-import desi.juan.email.jdk18.StringJoiner;
+import desi.juan.email.jdk8.StringJoiner;
 import org.apache.commons.io.IOUtils;
 
 /**
