@@ -32,12 +32,14 @@ import static javax.mail.Message.RecipientType.TO;
 import static javax.mail.Part.ATTACHMENT;
 import static javax.mail.Part.INLINE;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -111,6 +113,7 @@ public final class SendCommand {
         attachmentPart.setDisposition(ATTACHMENT);
         attachmentPart.setFileName(attachment.getId());
         DataHandler attachmentDataHandler = new DataHandler(attachment.getContent(), attachment.getContentType());
+//        DataHandler attachmentDataHandler = new DataHandler(new FileDataSource((File) attachment.getContent()));
         attachmentPart.setDataHandler(attachmentDataHandler);
         multipart.addBodyPart(attachmentPart);
       } catch (Exception e) {
