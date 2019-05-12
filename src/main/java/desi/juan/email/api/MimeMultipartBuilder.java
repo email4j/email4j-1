@@ -14,8 +14,8 @@ import java.util.Map;
 
 
 public class MimeMultipartBuilder {
-    public static final String PLAIN_TEXT_TYPE = "text/text;charset=UTF-8";
-    public static final String PLAIN_HTML_TYPE = "text/html;charset=UTF-8";
+    public static final String TEXT_PLAIN_TYPE = "text/plain;charset=UTF-8";
+    public static final String TEXT_HTML_TYPE = "text/html;charset=UTF-8";
 
     private MimeBodyPart textPart;
     private List<MimeBodyPart> imageParts = new ArrayList<MimeBodyPart>();
@@ -47,13 +47,13 @@ public class MimeMultipartBuilder {
         }
 
         textPart = new MimeBodyPart();
-        textPart.setContent(content, PLAIN_TEXT_TYPE);
+        textPart.setContent(content, TEXT_PLAIN_TYPE);
         return this;
     }
 
-    public MimeMultipartBuilder plainHtml(String content) throws MessagingException {
+    public MimeMultipartBuilder htmlText(String content) throws MessagingException {
         textPart = new MimeBodyPart();
-        textPart.setContent(content, PLAIN_HTML_TYPE);
+        textPart.setContent(content, TEXT_HTML_TYPE);
         return this;
     }
 
